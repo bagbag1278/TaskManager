@@ -1,41 +1,4 @@
-const fs = require('fs');
-const path = require('path');
 
-const DATA_FILE = path.join(__dirname, '../data/tasks.json');
-
-const readTasksFromFile = () => {
-    try {
-        const data = fs.readFileSync(DATA_FILE, 'utf8');
-        return JSON.parse(data);
-    } catch (error) {
-        return [];
-    }
-};
-
-const writeTasksToFile = (tasks) => {
-    fs.writeFileSync(DATA_FILE, JSON.stringify(tasks, null, 2), 'utf8');
-};
-
-let tasks = readTasksFromFile();
-let nextId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
-
- const getAllTasks = (req, res) => {
-    let result = tasks;
-
-    if (req.query.completed !== undefined) {
-        const completed = req.query.completed === 'true';
-        result = result.filter(t => t.completed === completed);
-    }
-
-    if (req.query.search) {
-        const searchTerm = req.query.search.toLowerCase();
-        result = result.filter(t =>
-            t.title.toLowerCase().includes(searchTerm)
-        );
-    }
-
-    res.json(result);
-};
 
 //  GET BY ID
 const getTaskById = (req, res) => {
