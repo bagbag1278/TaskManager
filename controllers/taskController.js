@@ -1,3 +1,37 @@
+let tasks = [];
+let nextId = 1;
+
+
+
+const getAllTasks = (req, res) => {
+    let result = tasks;
+
+    if (req.query.completed !== undefined) {
+        const completed = req.query.completed === 'true';
+        result = result.filter(t => t.completed === completed);
+    }
+    if (req.query.search){
+        const searchTerm = req.query.search.toLowerCase();
+        result = result.filter (t => t.title.toLowerCase().includes(searchTerm))
+
+    }
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+
+    const startIndex = (page - 1) * limit;
+    const endIndex = page + limit;
+
+    const paginatedResult = result.slice(startIndex , endIndex);
+
+     res.json({
+        total: result.length,
+        page: page,
+        limit: limit,
+        totalPages: Math.ceil(result.length / limit),
+        data: paginatedResult
+    });
+}
 
 
 //  GET BY ID
@@ -19,7 +53,7 @@ const getTaskById = (req, res) => {
 
 // CREATE 
 const createTask = (req, res) => {
-    const { title, image } = req.body;
+    const { title , image , completed } = req.body;
 
     if (!title) {
         return res.status(400).json({ error: "عنوان را وارد کنید" });
@@ -28,13 +62,12 @@ const createTask = (req, res) => {
     const newTask = {
         id: nextId++,
         title: title,
-        completed: false,
+        completed:completed,
         createdAt: new Date().toISOString(),
         image: image || null
     };
 
     tasks.push(newTask);
-    writeTasksToFile(tasks);
 
     res.status(201).json(newTask);
 };
