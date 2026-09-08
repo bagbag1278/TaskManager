@@ -5,16 +5,16 @@ const {createTaskValidator , updateTaskValidator , patchTaskValidator , idValida
 
 router.get("/", getAllTasksValidator, getAllTasks);
 
-router.get("/:id", idValidator, getTaskById);
+router.get("/:id",  getTaskById);
 
 router.post("/", createTaskValidator, createTask);
 
-router.delete("/:id", idValidator, deleteTask);
+router.delete("/:id",  deleteTask);
 
-router.put("/:id", updateTaskValidator, updateTask);
+router.put("/:id",  updateTask);
 
-router.patch("/:id", patchTaskValidator, patchTask);
+router.patch("/:id",  patchTask);
 
-router.patch("/:id/toggle", idValidator, toggleTask);
+router.patch("/:id/toggle",  toggleTask);
 
 module.exports = router;
