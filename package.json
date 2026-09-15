@@ -9,14 +9,20 @@
   "scripts": {
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "prisma skills sync || exit 0"
   },
   "dependencies": {
+    "@prisma/adapter-better-sqlite3": "^7.10.0",
+    "@prisma/client": "^6.19.3",
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "express-validator": "^7.3.2",
     "jsonwebtoken": "^9.0.3",
     "multer": "^2.2.0",
     "nodemon": "^3.1.14",
-    "password-hash": "^1.2.2"
+    "password-hash": "^1.2.2",
+    "prisma": "^6.19.3"
   }
 }
