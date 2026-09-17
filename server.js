@@ -3,6 +3,8 @@ require('dotenv').config();
 const express = require("express");
 const authRoutes = require('./src/routes/authRoutes')
 const catgoryRoutes = require('./src/routes/catgoryRoutes')
+const productRoutes = require('./src/routes/productRoutes')
+
 const app = express();
 const PORT = 3000;
 
@@ -12,6 +14,7 @@ app.use("/files", express.static("uploads"));
 
 app.use("/auth" , authRoutes)
 app.use("/category" , catgoryRoutes)
+app.use("/products", productRoutes);
 
 app.use((req, res) => {
     res.status(404).json({ error: 'مسیر پیدا نشد' });
