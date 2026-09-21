@@ -10,8 +10,8 @@ const {
     deleteProduct
 } = require('../controllers/productController');
 
-const { authenticate } = require('../Middlewares/authMiddleware');
-const { uploader } = require('../utils/files.util');
+const { authenticate } = require('../middlewares/authMiddleware');
+const { uploader } = require('../utils/upload');
 
 const {
     createProductValidator,
