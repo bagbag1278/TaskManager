@@ -7,7 +7,7 @@ const {
     removeFromFavorites
 } = require('../controllers/favoriteController');
 
-const { authenticate } = require('../middlewares/authMiddleware');
+const { authenticate } = require('../Middlewares/authMiddleware');
 
 const {
     addFavoriteValidator,

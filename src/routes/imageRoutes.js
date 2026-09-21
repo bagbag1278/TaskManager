@@ -7,7 +7,7 @@ const {
     deleteImage
 } = require('../controllers/imageController');
 
-const { authenticate } = require('../middlewares/authMiddleware');
+const { authenticate } = require('../Middlewares/authMiddleware');
 const { uploader } = require('../utils/upload');
 
 router.get('/', authenticate, getMyImages);

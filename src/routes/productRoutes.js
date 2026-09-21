@@ -10,7 +10,7 @@ const {
     deleteProduct
 } = require('../controllers/productController');
 
-const { authenticate } = require('../middlewares/authMiddleware');
+const { authenticate } = require('../Middlewares/authMiddleware');
 const { uploader } = require('../utils/upload');
 
 const {
